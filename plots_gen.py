@@ -6,7 +6,7 @@ import pandas as pd
 from load_dataset import pokemon_dataset, to_numeric, preprocessed_dataset
 from sklearn.manifold import TSNE
 final_df = preprocessed_dataset()
-
+raw_df = pokemon_dataset()
 """
 This file contains all the functions for the plots 
 """
@@ -25,7 +25,7 @@ def pokemon_tsne(color_column, perplexity_curse):
                          index=final_df.index,
                          columns=tsne.get_feature_names_out())
     
-    score = score.merge(pokemon_dataset(), left_index=True,
+    score = score.merge(raw_df, left_index=True,
                         right_index=True, how="left")
     fig = px.scatter(score,
                      x="tsne0",
@@ -35,7 +35,7 @@ def pokemon_tsne(color_column, perplexity_curse):
                      hover_data=score.columns)
     return fig
 
-def hist_by_type(types, values_x, values_y):
+def hist_by_type( values_x):
     """HIST BY TYPE
     
     Keyword arguments:
@@ -45,7 +45,18 @@ def hist_by_type(types, values_x, values_y):
     Return: histogram
     """
     
-    fig = px.histogram(x=values_x,
-                       y=values_y,
-                       color=types)
+    fig = px.histogram(raw_df,
+                       x=values_x,
+                       color='type1',
+                       barmode="group")
+    return fig
+
+def scatter_everything(x,y, color, symbol):
+    fig = px.scatter(raw_df,
+                     x=x,
+                     y=y,
+                     color=color,
+                     symbol=symbol,
+                     hover_name=raw_df.index,
+                     hover_data=raw_df.columns)
     return fig

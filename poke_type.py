@@ -16,7 +16,6 @@ with open(os.path.join('data', 'type-chart.yaml'), 'r') as file:
     data = yaml.safe_load(file)
 
 type_chart = pd.DataFrame(data).T
-type_chart
 
 
 weights = {"super-effective": 2, "not-very-effective": 0.5, "no-effect": 0}
