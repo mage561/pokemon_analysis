@@ -1,7 +1,7 @@
 import dash
 from dash import html, dcc, callback
 from dash.dependencies import Input, Output
-from utils.ft_pitou import ft_load_moves_dataset, ft_moves_dual_acps, ft_moves_tsne
+from utils.ft_pitou_moves import ft_load_moves_dataset, ft_moves_dual_acps, ft_moves_tsne
 
 # Enregistrement de la page
 dash.register_page(__name__, path='/moves')
