@@ -14,9 +14,9 @@ raw_df = pokemon_dataset()
 dash.register_page(__name__, path='/pkm_global')
 
 layout = html.Div([
-    html.H1('Chloe - display the big tsne on all dimansion and all stat'),
+ 
     # TSNE
-    html.H1("Pokemon TSNE"),
+    html.H1("Pokemon TSNE global"),
     html.Hr(),
     dcc.Dropdown(options =raw_df.columns, 
                     value="type1", 
