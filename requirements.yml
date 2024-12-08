@@ -1,0 +1,19 @@
+name: pokemon-dash-env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - pip
+  - pip:
+    - dash>=2.0.0
+    - dash-bootstrap-components>=1.0.0
+    - dash-cytoscape
+    - pandas
+    - plotly
+    - numpy
+    - pyyaml
+    - requests
+    - pillow
+    - scikit-learn
+    - matplotlib
