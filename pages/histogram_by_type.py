@@ -1,21 +1,25 @@
 import dash
-from dash import html
-# Import packages
-from dash import Dash, html, dash_table, dcc, callback, Output, Input
+from dash import html, dash_table, dcc, callback, Output, Input
 import pandas as pd
 import plotly.express as px
-from load_dataset import pokemon_dataset, preprocessed_dataset
 import numpy as np
-#from plots_gen import pokemon_tsne, hist_by_type, scatter_everything
+from load_dataset import pokemon_dataset, preprocessed_dataset
 from sklearn.manifold import TSNE
 final_df = preprocessed_dataset()
 raw_df = pokemon_dataset()
 
 dash.register_page(__name__, path='/histogram')
 
+commment = html.Div(style={"color" : "dark"},
+                    children=[
+    html.P("""On this graph, you can observe the repartition of the values 
+           from the dropdown feature by types, either compare multiple types 
+           or a single one""")
+])
+
 layout = html.Div([
         ## Histogram
-    html.H1(" Histogram by type "),
+    html.H1(" Histogram of the distribution of values of a feature by type "),
     html.Hr(),
     #dcc.Checklist(raw_df["type1"].unique(),
     #             value=["Normal"],
@@ -24,7 +28,7 @@ layout = html.Div([
                   value="hp",
                   id="hist-x"),
     dcc.Graph(figure={}, id="hist-by-type"),
-
+    commment
 
 ])
 
