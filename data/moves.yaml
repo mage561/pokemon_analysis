@@ -3428,7 +3428,7 @@ ivy-cudgel:
     category: physical
     power: 100
     accuracy:
-    pp:
+    pp: 10
     priority: 0
 jaw-lock:
     name: Jaw Lock
