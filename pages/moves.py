@@ -10,7 +10,7 @@ dash.register_page(__name__, path='/moves')
 layout = html.Div([
     # Page Heading
     html.Div([
-        html.H1("Analyse des Moves Pokémon", className="h3 mb-0 text-gray-800")
+        html.H1("Analyse des Moves Pokémon (prends un peu de temps à load)", className="h3 mb-0 text-gray-800")
     ], className="d-sm-flex align-items-center justify-content-between mb-4"),
 
     # Content Row
