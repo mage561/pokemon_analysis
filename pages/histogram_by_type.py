@@ -14,7 +14,7 @@ commment = html.Div(style={"color" : "dark"},
                     children=[
     html.P("""On this graph, you can observe the repartition of the values 
            from the dropdown feature by types, either compare multiple types 
-           or a single one""")
+           or a single one.""")
 ])
 
 layout = html.Div([
