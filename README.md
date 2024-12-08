@@ -1,2 +1,3 @@
 # Exploring-Data
-This repository contains sample code for my Introduction to Data Science and Machine Learning Course. Using a modified Pokémon dataset acquired from Kaggle.com, example code is provided for students demonstrating how explore data in R.
+This repository contains a dash application able to view and analyze a pokemon dataset from Kaggle.
+To run the app, make sure you got the [recipe](requirements.yml) on a virtual env or installed, then run `python app.py`
