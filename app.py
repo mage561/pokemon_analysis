@@ -6,7 +6,8 @@ app = Dash(__name__, use_pages=True,
            external_stylesheets=[dbc.themes.CERULEAN])
 
 nav = dbc.Nav(
-    class_name="navbar navbar-expand-lg bg-primary", style={'data-bs-theme' : 'dark'},
+    class_name="navbar navbar-expand-lg bg-primary", 
+    style={'data-bs-theme' : 'dark'},
     children = [ 
        
         dbc.NavItem(
