@@ -19,11 +19,14 @@ with open(os.path.join('data', 'type-chart.yaml'), 'r') as file:
 type_chart = pd.DataFrame(data).T
 
 weights = {"super-effective": 2, "not-very-effective": 0.5, "no-effect": 0}
-nodes = [{ "data" : {"id" : label, "label" : label} } for label in type_chart.index]
+nodes = [{ "data" : {"id" : label, 
+                     "label" : label,
+                     "url" : "https://github.com/partywhale/pokemon-type-icons/blob/main/icons/psychic.svg"} 
+                     } for label in type_chart.index]
 
 col_eff = {
-    "not-very-effective" : "blue",
-    "no-effect" : "red",
+    "not-very-effective" : "red",
+    "no-effect" : "blac",
     "super-effective" : "green"
 }
 
@@ -31,7 +34,10 @@ edges = []
 for source in type_chart.index:
     for efficiency in type_chart:
         for target in type_chart.at[source,efficiency]:
-            edges.append({"data": {"source": source, "target": target, "efficiency":efficiency, "color" : col_eff[efficiency] }})
+            edges.append({"data": {"source": source, 
+                                   "target": target, 
+                                   "efficiency":efficiency, 
+                                   "color" : col_eff[efficiency] }})
 elements = nodes + edges
 
 
@@ -40,7 +46,7 @@ layout = html.Div([
     html.H1('Chloe - page des flowchart des types'),
         dcc.Dropdown(
             id="dropdown-update-layout",
-            value="grid",
+            value="circle",
             clearable=False,
             options=[
                 {"label": name.capitalize(), "value": name}
@@ -54,8 +60,27 @@ layout = html.Div([
             elements=edges + nodes,
             stylesheet=[
                 {
-                    'selector' : 'edge',
+                    'selector' : '[efficiency == "no-ffect"]',
                     'style':{
+                        'curve-style' : 'bezier',
+                        'source-arrow-color': 'data(color)',
+                        'source-arrow-shape': 'triangle',
+                        'line-color':'data(color)'
+                    }
+                },
+                {
+                    'selector' : '[efficiency == "not-very-effective"]',
+                    'style':{
+                        'curve-style' : 'bezier',
+                        'source-arrow-color': 'data(color)',
+                        'source-arrow-shape': 'triangle',
+                        'line-color':'data(color)'
+                    }
+                },
+                {
+                    'selector' : '[efficiency == "super-effective"]',
+                    'style':{
+                        'curve-style' : 'bezier',
                         'source-arrow-color': 'data(color)',
                         'source-arrow-shape': 'triangle',
                         'line-color':'data(color)'
@@ -63,26 +88,26 @@ layout = html.Div([
                 },
                 {
                     'selector': 'node',
-                    'style' : {'label': 'data(label)'
+                    'style' : {'label': 'data(label)',
+                                'width': 90,
+                                'height': 80,
+                                'background-fit': 'cover',
+                                'background-image': 'data(url)'
+                                
                     }
                 }
             ]
         ),
-        dcc.Checklist(
-            id='nodes-show',
-            options=list(type_chart.index),
-            value= type_chart.index,
-            inline=True,
-        )
+        html.H2("Legend"),
+        html.Li("hi")
     ]
 )
 
 
 @dash.callback(
     Output("cytoscape-update-layout", "layout"),
-    Input("dropdown-update-layout", "value"),
-    Input('nodes-show', "value")
+    Input("dropdown-update-layout", "value")
 )
-def update_layout(layout, dropdown_layout, nodes_to_show):
+def update_layout(layout):
     
-    return {"name": layout, "animate": True, "nodes_to_show": nodes_to_show}
+    return {"name": layout, "animate": True}
