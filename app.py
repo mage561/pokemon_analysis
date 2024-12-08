@@ -2,7 +2,6 @@ import dash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-<<<<<<< HEAD
 app = dash.Dash(
     __name__,
     use_pages=True,
@@ -23,7 +22,7 @@ app = dash.Dash(
 
 nav = dbc.Nav([
         dbc.NavItem(
-            dbc.NavLink(f"{page['name']} - {page["path"]}", 
+            dbc.NavLink(f"{page['name']} - {page['path']}", 
                         active=True, 
                         href=page["relative_path"]))
                     for page in dash.page_registry.values()
@@ -39,7 +38,6 @@ classic = html.Div([
 
 
 app.layout = html.Div([
-    html.H1('Chloe - Header pour simplifier la naviation entre page'),
     nav,
     dash.page_container
 ])
